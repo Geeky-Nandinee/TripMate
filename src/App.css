@@ -1,0 +1,105 @@
+#root {
+}
+/* styles.css or relevant stylesheet */
+.header-logo {
+  max-width: 100%; /* Scale the image to fit the container */
+  height: auto;    /* Maintain the aspect ratio */
+  max-height: 100px; /* Adjust as needed */
+}
+
+
+.dialog-logo {
+  max-width: 100px; /* Adjust this value as needed */
+  height: auto;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.hero-logo {
+  width: 500px;  /* Adjust the size as needed */
+  height: auto; /* Adjust the size as needed */
+  margin-top: -20px; /* Adjust if necessary */
+}
+
+/* General styling for the header */
+.header-gradient {
+  background: linear-gradient(to right, #6a1b9a, #c1a207); /* Initial purple gradient background */
+  background-size: 200% 200%;
+  transition: background-position 0.5s ease, background-color 0.3s ease;
+}
+
+/* Hover effect */
+.header-gradient:hover {
+  background-position: 100% 0; /* Shift gradient position for the hover effect */
+}
+
+/* Additional styling for elements to ensure the effect is visible */
+.header-logo {
+  width: 250px; /* Adjust as needed */
+  height: 120px; /* Adjust as needed */
+}
+
+/* Example Button styling */
+.button-gradient {
+  background: linear-gradient(to right, #ae7708, #8e24aa);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 4px;
+  transition: background-position 0.5s ease, filter 0.3s ease;
+  background-size: 200% 200%;
+}
+
+/* Button hover effect */
+.button-gradient:hover {
+  background-position: 100% 0;
+  filter: brightness(95%); /* Darkens the button */
+}
+
+/* styles.css or relevant stylesheet */
+
+/* Basic styling for the hover effect */
+.hover-word {
+  display: inline-block; /* Ensure the span is treated as a block-level element */
+  transition: color 0.3s ease; /* Smooth transition effect */
+}
+
+/* Hover effect */
+.hover-word:hover {
+  color: #6a1b9a; /* Change to your desired purple color */
+}
