@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader } from "@/components/ui/dialog";
 import { FcGoogle } from "react-icons/fc";
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { debounce } from 'lodash';
 
 function Header() {
   const user = JSON.parse(localStorage.getItem('user'));
   const [openDialog, setOpenDialog] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    console.log(user);
+    const handleScroll = debounce(() => {
+      setIsScrolled(window.scrollY > 10);
+    }, 50);
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [user]);
 
   const login = useGoogleLogin({
@@ -44,27 +43,55 @@ function Header() {
   };
 
   return (
-    <div className='p-3 shadow-sm flex justify-between items-center px-4 header-gradient'>
-      <div className='flex-grow flex'>
+    <motion.div 
+      className={`p-3 flex justify-between items-center px-4 header-gradient ${isScrolled ? 'hidden' : ''}`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+    >
+      <div className='flex-grow flex pl-20'>
         <Link to="/">
-          <img src='/TripMate-Logo-1.png' className='header-logo' alt="TripMate Logo" />
+          <motion.img 
+            src='/TripMate-Logo-1.png' 
+            className='header-logo' 
+            alt="TripMate Logo" 
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          />
         </Link>
       </div>
-      <div className='flex items-center gap-4'>
+      <div className='flex items-center gap-8 pr-10'>
         {user ? (
           <>
-            <a href="/create-trip">
-              <Button variant="outline" className="rounded-full button-gradient">Create Trip</Button>
-            </a>
-            <a href="/my-trips">
-              <Button variant="outline" className="rounded-full button-gradient">My Trips</Button>
-            </a>
+            <Link to="/create-trip">
+              <motion.button 
+                className="rounded-full button-gradient"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Create Trip
+              </motion.button>
+            </Link>
+            <Link to="/my-trips">
+              <motion.button 
+                className="rounded-full button-gradient"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                My Trips
+              </motion.button>
+            </Link>
             <Popover>
               <PopoverTrigger>
-                <img src={user?.picture} className='rounded-full w-[38px] h-[38px]' />
+                <motion.img 
+                  src={user?.picture} 
+                  className='rounded-full w-[38px] h-[38px]' 
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                />
               </PopoverTrigger>
               <PopoverContent>
-                <h2 className="cursor-pointer" onClick={() => {
+                <h2 className="cursor-pointer hover-effect" onClick={() => {
                   googleLogout();
                   localStorage.clear();
                   window.location.reload();
@@ -73,27 +100,38 @@ function Header() {
             </Popover>
           </>
         ) : (
-          <Button onClick={() => setOpenDialog(true)} className="button-gradient">Sign In</Button>
+          <motion.button 
+            onClick={() => setOpenDialog(true)} 
+            className="button-gradient"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Sign In
+          </motion.button>
         )}
       </div>
 
-      <Dialog open={openDialog}>
+      <Dialog open={openDialog} onOpenChange={setOpenDialog}>
         <DialogContent>
           <DialogHeader>
             <DialogDescription>
               <img src="/TripMate-Logo-1.png" className='dialog-logo' alt="Dialog Logo"/>
               <h2 className="font-bold text-lg mt-6">Sign In with Google</h2>
               <p>Sign In to the App with Google authentication securely</p>
-              <Button
-                onClick={login} className="w-full mt-5 flex gap-4 items-center button-gradient">
+              <motion.button
+                onClick={login} 
+                className="w-full mt-5 flex gap-4 items-center button-gradient"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <FcGoogle className="h-7 w-7" />
                 Sign In With Google
-              </Button>
+              </motion.button>
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
       </Dialog>
-    </div>
+    </motion.div>
   );
 }
 

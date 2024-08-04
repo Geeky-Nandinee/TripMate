@@ -1,0 +1,59 @@
+/* Hero.css */
+.animated-button {
+    position: relative;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(45deg, #6a1b9a, #c1a207);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .animated-button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #7a00ff, #ff00c8, #ff811a, #ffaa00, #ba6300, #7a00ff);
+    z-index: -1;
+    filter: blur(5px);
+    background-size: 400%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .animated-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .animated-button:hover::before {
+    opacity: 1;
+    animation: glowing 20s linear infinite;
+  }
+  
+  @keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+  }
+  
+  .animated-button span {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hover-word {
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+  
+  .hover-word:hover {
+    color: #6a1b9a;
+  }

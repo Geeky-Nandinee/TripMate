@@ -1,0 +1,52 @@
+.plane-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+    overflow: hidden;
+  }
+  
+  .plane {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  
+  .plane-1 {
+    top: 20%;
+    left: -100px;
+    animation: flyPlane1 3s ease-out forwards;
+  }
+  
+  .plane-2 {
+    top: 50%;
+    right: -100px;
+    animation: flyPlane2 3s ease-out forwards;
+  }
+  
+  .plane-3 {
+    bottom: 30%;
+    left: 50%;
+    animation: flyPlane3 3s ease-out forwards;
+  }
+  
+  @keyframes flyPlane1 {
+    0% { opacity: 0; left: -100px; transform: scale(0.5) rotate(0deg); }
+    10% { opacity: 1; }
+    100% { opacity: 0; left: 120vw; transform: scale(1.5) rotate(45deg); }
+  }
+  
+  @keyframes flyPlane2 {
+    0% { opacity: 0; right: -100px; transform: scale(0.5) rotate(0deg); }
+    10% { opacity: 1; }
+    100% { opacity: 0; right: 120vw; transform: scale(1.5) rotate(-45deg); }
+  }
+  
+  @keyframes flyPlane3 {
+    0% { opacity: 0; bottom: -100px; transform: scale(0.5) rotate(0deg); }
+    10% { opacity: 1; }
+    100% { opacity: 0; bottom: 120vh; transform: scale(1.5) rotate(90deg); }
+  }
