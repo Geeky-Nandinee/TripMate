@@ -1,4 +1,3 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
@@ -8,12 +7,12 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDHy3auHxO_aUHgQXZbGOHCuapKDEYRpOQ",
-  authDomain: "trip-planner2-65a43.firebaseapp.com",
-  projectId: "trip-planner2-65a43",
-  storageBucket: "trip-planner2-65a43.appspot.com",
-  messagingSenderId: "371421790498",
-  appId: "1:371421790498:web:c17eaf809e351f4e5ee57b"
+  apiKey: "AIzaSyAjKfl2U3csoqdc3rP8wQrMz0-5vSQ-DoI",
+  authDomain: "tripmate-de769.firebaseapp.com",
+  projectId: "tripmate-de769",
+  storageBucket: "tripmate-de769.appspot.com",
+  messagingSenderId: "195879731574",
+  appId: "1:195879731574:web:62008bf31196c0c2b9fa57"
 };
 
 // Initialize Firebase
